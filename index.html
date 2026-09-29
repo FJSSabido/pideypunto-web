@@ -54,7 +54,7 @@
 
   .contact .intro { text-align: center; color: var(--muted); max-width: 36em; margin: 0 auto 28px; }
   .contact h2 { text-align: center; }
-  form.demo { max-width: 620px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  form.demo { max-width: 440px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   form.demo .full { grid-column: 1 / -1; }
   form.demo label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px; }
   form.demo label small { font-weight: 400; color: var(--muted); }
@@ -158,7 +158,7 @@
   <section id="contacto" class="contact">
     <div class="wrap">
       <h2>¿Quieres verlo funcionando en tu local?</h2>
-      <p class="intro">PideYPunto está en desarrollo y buscamos bares y restaurantes para probarlo. Déjanos tus datos y te contactamos para enseñarte una demo, sin compromiso.</p>
+      <p class="intro">PideYPunto está en desarrollo y buscamos bares y restaurantes para probarlo. Déjanos tu nombre y tu teléfono y te llamamos para enseñarte una demo, sin compromiso.</p>
 
       <!-- El formulario se envía con Web3Forms (gratuito). Sustituye TU_CLAVE_WEB3FORMS por la clave que te llega por email. -->
       <form class="demo" id="demo-form" action="https://api.web3forms.com/submit" method="POST">
@@ -167,43 +167,15 @@
         <input type="hidden" name="from_name" value="Web de PideYPunto">
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <label>Tu nombre
+        <label class="full">Nombre
           <input type="text" name="nombre" required autocomplete="name" maxlength="80">
         </label>
-        <label>Nombre del local
-          <input type="text" name="local" required autocomplete="organization" maxlength="100">
-        </label>
-        <label>Teléfono
-          <input type="tel" name="telefono" autocomplete="tel" maxlength="20" inputmode="tel">
-        </label>
-        <label>Email
-          <input type="email" name="email" required autocomplete="email" maxlength="120">
-        </label>
-        <label>Localidad
-          <input type="text" name="localidad" autocomplete="address-level2" maxlength="80">
-        </label>
-        <label>Tipo de local
-          <select name="tipo">
-            <option>Bar</option>
-            <option>Cafetería</option>
-            <option>Restaurante</option>
-            <option>Terraza / chiringuito</option>
-            <option>Otro</option>
-          </select>
-        </label>
-        <label class="full"><span>Mesas aproximadas <small>(incluida la terraza)</small></span>
-          <select name="mesas">
-            <option>Menos de 10</option>
-            <option>10 a 25</option>
-            <option>Más de 25</option>
-          </select>
-        </label>
-        <label class="full"><span>¿Algo que quieras contarnos? <small>(opcional)</small></span>
-          <textarea name="mensaje" maxlength="1500" placeholder="Por ejemplo: qué TPV usas, cuándo te vendría bien la demo…"></textarea>
+        <label class="full">Teléfono de contacto
+          <input type="tel" name="telefono" required autocomplete="tel" maxlength="20" inputmode="tel" pattern="\+?[0-9 ]{9,20}" title="Un teléfono de al menos 9 cifras">
         </label>
         <label class="check full">
           <input type="checkbox" name="acepto_privacidad" value="sí" required>
-          <span>Acepto que PideYPunto use estos datos solo para contactarme sobre la demo. No se ceden a nadie y puedo pedir que se borren en cualquier momento.</span>
+          <span>Acepto que PideYPunto use estos datos solo para llamarme sobre la demo. No se ceden a nadie y puedo pedir que se borren en cualquier momento.</span>
         </label>
         <button type="submit" class="btn full">Pedir una demo</button>
         <p id="form-status" class="full" role="status" aria-live="polite"></p>
@@ -236,7 +208,7 @@
             if (data && data.success) {
               form.reset();
               status.className = 'full ok';
-              status.textContent = '¡Gracias! Te escribiremos en unos días para concretar la demo.';
+              status.textContent = '¡Gracias! Te llamaremos en unos días para concretar la demo.';
             } else {
               throw new Error();
             }
